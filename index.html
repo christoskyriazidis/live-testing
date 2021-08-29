@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .nav-bar {
+        display: flex;
+    }
+
+    .nav-bar div:hover {
+        cursor: pointer;
+        color: red;
+    }
+
+    .nav-bar div {
+        padding: 5px;
+    }
+</style>
+
+<body>
+
+    <div class="sport-nav-bar">
+        <div class="sport-nav-bar-wrapper">
+            
+        </div>
+    </div>
+
+    <div id="mainContent">
+
+    </div>
+    <script>
+
+
+
+
+    </script>
+
+
+    <!-- <script src="helpers/Strategy.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./helpers/createNav.js"></script>
+    <script src="./helpers/helpers.js"></script>
+    <script>
+
+        const activeSports = [
+            { id: 4, title: 'pingpong', count: 6, Leagues: [] },
+            { id: 5, title: 'pool', count: 1, Leagues: [] },
+            { id: 6, title: 'tennis', count: 4, Leagues: [] },
+            { id: 7, title: 'cricket', count: 1, Leagues: [] },
+            { id: 8, title: 'football', count: 11, Leagues: [] },
+            { id: 143, title: 'kino', count: 8, Leagues: [] },
+            { id: 131, title: 'racing', count: 8, Leagues: [] },
+            { id: 111, title: 'Formula 1', count: 8, Leagues: [] },
+            { id: 1311, title: 'Water Pollo', count: 8, Leagues: [] }
+        ]
+        let GLO_MAINURL = location.href;
+
+
+        $(document).ready(function () {
+            window.history.pushState(null, null, `#/sport/1`);
+
+            window.addEventListener('popstate', e => {
+                // kati(e.state.id);
+            });
+        })
+
+        $(document).on("click", ".nav-bar [sport-id]", function () {
+            let sportId = $(this).attr('sport-id');
+            window.history.pushState({ sportId }, `${sportId}`, `#/sport/${sportId}`);
+            kati(sportId)
+        });
+    </script>
+</body>
+
+</html>
