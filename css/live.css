@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Verdana, Geneva, sans-serif;
 }
 
 #LIVE-container {
@@ -11,9 +12,25 @@
 }
 
 .sport-nav-bar-wrapper {
-    display: flex;
+    display: grid;
+    max-width: 100%;
+    max-height: 100px;
+    overflow: auto;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    grid-auto-flow: column;
     background: #303030;
     color: #9c9c9c;
+    overflow: auto;
+    max-width: 100vw;
+}
+
+.live-sport-header-title {
+    font-size: 17px;
+}
+
+.live-sport-header-title, .live-sport-header-options {
+    display: flex;
+    align-items: center;
 }
 
 .sport-nav-bar-item {
@@ -26,7 +43,93 @@
     padding: 5px;
 }
 
-.active-nav-bar-item > div{
+.active-nav-bar-item>div {
     color: #fff;
     filter: grayscale(0);
+}
+
+.live-sport-header {
+    display: grid;
+    grid-template-columns: minmax(195px, 0.5fr) 3fr;
+    background: #3a3a3a;
+    height: 40px;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.5rem;
+}
+
+.live-sport-header-options {
+    justify-self: end;
+}
+
+.eventLeagueHeader {
+    padding: 5px;
+    color: #fff;
+    font-size: 1rem;
+    background-color: #4c4c4c;
+    display: grid;
+    grid-template-columns: minmax(195px, 0.5fr) 3fr;
+}
+
+.game-row {
+    padding: 5px;
+    display: grid;
+    grid-template-columns: minmax(195px, 0.5fr) 3fr;
+    background-color: #303030;
+}
+
+.selected-sport-header {
+    padding: 10px;
+    background-color: #3a3a3a;
+    display: grid;
+    grid-template-columns: minmax(195px, 0.5fr) 3fr;
+}
+
+.selected-sport-title {
+    color: #fff;
+}
+
+.selected-sport-options {
+    display: flex;
+    justify-self: end;
+}
+
+.odds-holder, .odd-titles {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.odds-holder {
+    color: #f1c40f;
+}
+
+.point-selection, .odd-title {
+    border-left: 1px solid #5d5d5d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.point-selection:hover {
+    background-color: rgb(97, 95, 95);
+    cursor: pointer;
+}
+
+.team-holder {
+    color: #dcdcdc;
+    display: grid;
+}
+
+.team-holder:hover {
+    cursor: pointer;
+    color: #fff;
+}
+
+.first-row, .second-row {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+}
+
+.score {
+    justify-self: end;
 }

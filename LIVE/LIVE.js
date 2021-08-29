@@ -11,8 +11,8 @@ LIVE.prototype.initialiveLIVE = async function () {
     await this.CreateSportObjects();
     this.drawNavBar();
     this.NavigationHandler();
+    this.RenderSelectedSport();
 }
-
 
 LIVE.prototype.CreateSportObjects = async function () {
     const data = await getData();
@@ -57,3 +57,9 @@ LIVE.prototype.NavigationHandler = function () {
     $(`[sport-id="${sportId}"]`).addClass('active-nav-bar-item');
     window.history.pushState({ sportId }, `${sportId}`, `#/sport/${sportId}`);
 }
+
+LIVE.prototype.RenderSelectedSport = function () {
+    const data = this.sportData['Football'];
+    // console.log(data);
+}
+
