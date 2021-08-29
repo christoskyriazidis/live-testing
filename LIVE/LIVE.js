@@ -59,7 +59,9 @@ LIVE.prototype.NavigationHandler = function () {
 }
 
 LIVE.prototype.RenderSelectedSport = function () {
-    const data = this.sportData['Football'];
-    // console.log(data);
+    const _Sport_Strategy = new Sport_Strategy();
+    const _BasketBall = new BasketBall();
+    _Sport_Strategy.setStrategy(_BasketBall)
+    _Sport_Strategy.makeSportContent(this.sportData['Football']);
 }
 
