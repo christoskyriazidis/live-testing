@@ -59,10 +59,11 @@ LIVE.prototype.NavigationHandler = function () {
     window.history.pushState({ sportId }, `${sportId}`, `#/sport/${sportId}`);
 }
 
-LIVE.prototype.RenderSelectedSport = function () {
+LIVE.prototype.RenderSelectedSport = function () {    
     const { id, title } = this.SELECTED_SPORT;
     const data = this.sportData['Football'];
     console.log(data);
+    
     //Creating Sport Strategy and then passing the current selected sport
     const _Sport_Strategy = new Sport_Strategy();
 
