@@ -1,3 +1,7 @@
+
+
+
+
 const Sport_Strategy = function () {
     this.sportName = ""
 }
@@ -6,8 +10,11 @@ Sport_Strategy.prototype = {
     setStrategy: function (sportName) {
         this.sportName = sportName
     },
-    makeSportContent: function (package) {
-        return this.sportName.makeSportContent(package);
+    makeSportContent: function (data) {
+        return this.sportName.makeSportContent(data);
+    },
+    updateSportContent: function (data) {
+        return this.sportName.updateSportContent(data);
     }
 }
 
@@ -20,7 +27,6 @@ const Football = function () {
 
 const BasketBall = function () {
     this.makeSportContent = function (data) {
-        console.log(data);
         let header = `
             <div class="live-sport-header-title">
                 BasketBall
@@ -111,10 +117,14 @@ const BasketBall = function () {
         //                 </div>
         //             </div>
         // `
+
         document.querySelector('.live-sport-header').innerHTML = header
         document.querySelector('.live-matches-container').innerHTML = body
-        return "$43.20";
-    }
+        return { header, body };
+    },
+        this.updateSportContent = function (data) {
+            console.log(data);
+        }
 };
 
 

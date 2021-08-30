@@ -2,15 +2,16 @@ function LIVE(selectedSport) {
     this.initialiveLIVE();
     this.sportData = []
     this.navBar = '';
-    this.selectedSportId = selectedSport
-    this._SPORT_NAV_CONTAINER = document.querySelector('.sport-nav-bar-wrapper');
+    this.SELECTED_SPORT = { id: selectedSport, title: 'Basketball' }
+    this.SPORT_NAV_CONTAINER = document.querySelector('.sport-nav-bar-wrapper');
+    this.state = 'loading|idle|error'
 }
 
 //Auto initialize LIVE when creating new Object.
 LIVE.prototype.initialiveLIVE = async function () {
     await this.CreateSportObjects();
-    this.drawNavBar();
     this.NavigationHandler();
+    this.drawNavBar();
     this.RenderSelectedSport();
 }
 
@@ -42,16 +43,16 @@ LIVE.prototype.drawNavBar = function () {
                 <div class="sport-nav-text"><span>${i}</span><span>${i.length}</span></div>
             </div>`
     }
-    this._SPORT_NAV_CONTAINER.innerHTML = navBox;
+    this.SPORT_NAV_CONTAINER.innerHTML = navBox
 }
 
 LIVE.prototype.SetSelectedSportId = function (sportId) {
-    this.selectedSportId = sportId;
+    this.SELECTED_SPORT.id = sportId;
     this.NavigationHandler();
 }
 
 LIVE.prototype.NavigationHandler = function () {
-    const sportId = this.selectedSportId
+    const sportId = this.SELECTED_SPORT.id
     //fetch/print data 
     $('.sport-nav-bar-item').removeClass('active-nav-bar-item');
     $(`[sport-id="${sportId}"]`).addClass('active-nav-bar-item');
@@ -59,9 +60,31 @@ LIVE.prototype.NavigationHandler = function () {
 }
 
 LIVE.prototype.RenderSelectedSport = function () {
+    const { id, title } = this.SELECTED_SPORT;
+    const data = this.sportData['Football'];
+    console.log(data);
+    //Creating Sport Strategy and then passing the current selected sport
     const _Sport_Strategy = new Sport_Strategy();
-    const _BasketBall = new BasketBall();
-    _Sport_Strategy.setStrategy(_BasketBall)
-    _Sport_Strategy.makeSportContent(this.sportData['Football']);
+
+    let HTML = ""
+    switch (this.SELECTED_SPORT.title) {
+        case 'Football':
+            const _Football = new Football();
+            _Sport_Strategy.setStrategy(_Football);
+            HTML = _Sport_Strategy.makeSportContent(data);
+            break;
+        case 'Basketball':
+            const _BasketBall = new BasketBall();
+            _Sport_Strategy.setStrategy(_BasketBall);
+            HTML = _Sport_Strategy.makeSportContent(data)
+            break;
+        default:
+            console.log('Something went wrong when settings Sport Strategy');
+            const _Default = new Football();
+            _Sport_Strategy.setStrategy(_BasketBall);
+            HTML = _Sport_Strategy.makeSportContent(data)
+            break;
+    }
+
 }
 
